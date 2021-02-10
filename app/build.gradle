@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId "com.mmu.fyp.sheetbasedcalculator"
+        minSdkVersion 15
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation "androidx.core:core-ktx:+"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    // implementation 'com.android.support:appcompat-v7:28.+'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.wunderlist:sliding-layer:1.2.5'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'org.apfloat:apfloat:1.9.1'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.jjoe64:graphview:4.2.2'
+}
