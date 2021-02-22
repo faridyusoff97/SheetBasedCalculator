@@ -832,7 +832,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
             setupTokenizer();
 
             try {
-                if (token == variable) {
+                if (token == variable ) {
                     var = st.sval;
                     token = st.nextToken();
 
@@ -932,7 +932,6 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
 
                     // FUNCTION PART END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
                     // Display all functions that have been defined
                     else if (var.equalsIgnoreCase("functions")){
                         token = st.nextToken();
@@ -945,19 +944,89 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                                 answer = answer + number + ". " + pair.getKey() + "(x) = " + pair.getValue() + "\n";
                                 number += 1;
                                 System.out.println(pair.getKey() + " = " + pair.getValue());
-                                // it.remove(); // avoids a ConcurrentModificationException
                             }
                         }
                     }
 
+                    // Graph part
                     // Graph activity
 
                     else if (var.equalsIgnoreCase("graph")){
-                        token = st.nextToken();
                         Vibrator vibra = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                         vibra.vibrate(80);
                         Intent graphIntent = new Intent(getContext(), GraphActivity.class);
+
+                        // Max X value
+                        int max_X_Value = 20;
+
+                        // Placeholder
+                        int t = 200;
+                        graphIntent.putExtra("testnum", t);
+
+                        // Array for y values
+                        double[] yArray = new double[10000];
+                        if (token == (int) '['){
+                            token = st.nextToken();
+                            //Calculate y values and store all into array to be passed to graph activity
+                            if (token == variable){
+                                var = st.sval;
+                                token = st.nextToken();
+                                if (token == number){
+                                    double tempNum = st.nval;
+                                    max_X_Value = (int) tempNum;
+                                    Log.d("adamasuk", String.valueOf(max_X_Value));
+                                }
+                                //Check if function exists
+                                if (functionName.get(var) != null){
+                                    String tempName = functionName.get(var);
+                                    int i = 0;
+                                    //Loop as many times as the max value of X * 10
+                                    while (i < (max_X_Value*10)) {
+                                        fc = new Scanner(tempName);
+                                        while (fc.hasNextLine()) {
+                                            equation = fc.nextLine();
+                                            setupTokenizer();
+                                            try {
+                                                fvKey = 1;
+
+                                                //Loop values of x to calculate y
+                                                Apfloat tempAp = new Apfloat(i);
+                                                Apfloat divideThis = new Apfloat(10);
+                                                tempAp = tempAp.divide(divideThis);
+                                                fm.put("X", tempAp);
+                                                fm.put("x", tempAp);
+
+                                                result = expression();
+                                                yArray[i] = result.doubleValue();
+                                                i++;
+
+
+                                                fvKey = 0;
+                                            } catch (CalculationException e) {
+                                                e.printStackTrace();
+                                                new AlertDialog.Builder(getActivity())
+                                                        .setIcon(android.R.drawable.ic_dialog_alert)
+                                                        .setTitle("Error")
+                                                        .setMessage(e.getMessage())
+                                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                            }
+                                                        })
+                                                        .show();
+                                            }
+                                        }
+                                        fm.clear();
+                                    }
+                                }
+                            }
+                        }
+
+                        graphIntent.putExtra("max_x", max_X_Value);
+                        graphIntent.putExtra("passArrayIntent", yArray);
                         startActivity(graphIntent);
+
                     }
 
                     // Precision and significant figures display settings

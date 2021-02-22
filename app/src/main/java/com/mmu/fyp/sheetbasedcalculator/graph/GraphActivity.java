@@ -25,20 +25,27 @@ public class GraphActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowHomeEnabled(true);
 
+        int max_X_Value = getIntent().getIntExtra("max_x", 10);
+        int t = getIntent().getIntExtra("testnum", 100);
+        Bundle b = this.getIntent().getExtras();
+        double[] yArray = b.getDoubleArray("passArrayIntent");
+
         double x, y;
         x = 0;
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
         series1 = new LineGraphSeries<>();
 
-        int numDataPoints = 100;
+        int numDataPoints = max_X_Value*10;
+        int j=0;
         for(int i = 0; i < numDataPoints; i++ ){
             x = x + 0.1;
-            y = Math.sin(x);
-            series1.appendData(new DataPoint(x,y),true,100);
+            y = yArray[j];
+            j++;
+            series1.appendData(new DataPoint(x,y),true,numDataPoints);
         }
 
-        graph.getViewport().setMaxX(10);
+        graph.getViewport().setMaxX(max_X_Value);
         graph.getViewport().setScalable(true);  // activate horizontal zooming and scrolling
         graph.getViewport().setScrollable(true);  // activate horizontal scrolling
         graph.getViewport().setScalableY(true);  // activate horizontal and vertical zooming and scrolling
@@ -48,6 +55,7 @@ public class GraphActivity extends AppCompatActivity {
 
 
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {
