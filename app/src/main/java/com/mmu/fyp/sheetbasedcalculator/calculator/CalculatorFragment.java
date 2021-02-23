@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -68,6 +69,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
     private EditText screen;
     private Button btnSP, b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bDot, btnCP, bAdd, bMinus, bMulti, bDiv, bEqua, bEnter, bDel;
     private Button bSin, bASin, bTan, bATan, bCos, bACos, bLog, bLn, bExp, bVa, bVb, bExpo, bX, bY, bPow, bEval;
+    private Button btnSDigits, btnPrecision, btnFunction, btnGraph;
     public static CustomStreamTokenizer st;
     public static int token;
     public static int number = CustomStreamTokenizer.TT_NUMBER;
@@ -83,6 +85,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
     public static int significantDigits = 10;
     public static int fKey = 0;
     public static int fvKey = 0;
+    public static int gKey = 0;
     private boolean shouldRestore = true;
     public Gson gson = new Gson();
     public static SharedPreferences preffs;
@@ -638,6 +641,65 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
             }
         });
 
+        bExpo = (Button) root.findViewById(R.id.btnFunction);
+        bExpo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vibrator vibra = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibra.vibrate(80);
+                int start = screen.getSelectionStart();
+                int end = screen.getSelectionEnd();
+                screen.getText().replace(Math.min(start, end),
+                        Math.max(start, end), "functions ");
+
+            }
+        });
+
+        bExpo = (Button) root.findViewById(R.id.btnGraph);
+        bExpo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vibrator vibra = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibra.vibrate(80);
+                int start = screen.getSelectionStart();
+                int end = screen.getSelectionEnd();
+                screen.getText().replace(Math.min(start, end),
+                        Math.max(start, end), "graph [ ");
+
+            }
+        });
+
+        bExpo = (Button) root.findViewById(R.id.btnPrecision);
+        bExpo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vibrator vibra = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibra.vibrate(80);
+                int start = screen.getSelectionStart();
+                int end = screen.getSelectionEnd();
+                screen.getText().replace(Math.min(start, end),
+                        Math.max(start, end), "precision = ");
+
+            }
+        });
+
+        bExpo = (Button) root.findViewById(R.id.btnSDigits);
+        bExpo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vibrator vibra = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibra.vibrate(80);
+                int start = screen.getSelectionStart();
+                int end = screen.getSelectionEnd();
+                screen.getText().replace(Math.min(start, end),
+                        Math.max(start, end), "SDigits = ");
+
+            }
+        });
+
+
+
+
         bEval = (Button) root.findViewById(R.id.btnEvaluate);
         bEval.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -792,8 +854,6 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.calculator_frag_menu, menu);
     }
-
-
 
     private String calculateExpression() throws IOException {
         String answer = "";
@@ -988,6 +1048,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                                             setupTokenizer();
                                             try {
                                                 fvKey = 1;
+                                                gKey = 1;
 
                                                 //Loop values of x to calculate y
                                                 Apfloat tempAp = new Apfloat(i);
@@ -1000,7 +1061,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                                                 yArray[i] = result.doubleValue();
                                                 i++;
 
-
+                                                gKey = 0;
                                                 fvKey = 0;
                                             } catch (CalculationException e) {
                                                 e.printStackTrace();
@@ -1044,7 +1105,6 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                         // Adjust the number of digits that is displayed before the answers are transformed into scientific notation. eg 1000
                         else if (var.equalsIgnoreCase("sDigits")){
                             token = st.nextToken();
-                            Log.d("testhere","gay");
                             if (token == number){
                                 double tempNum = st.nval;
                                 significantDigits = (int) tempNum;
@@ -1298,8 +1358,15 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
 
             token = st.nextToken();
             d = power();
+            Apfloat zero = new Apfloat(0);
             if (fKey != 1){
-                result = c.divide(d);
+                if (gKey == 1 && d.equals(zero)){
+                    d = d.add(new Apfloat (0.000000000001));
+                    result = c.divide(d);
+                }
+                else{
+                    result = c.divide(d);
+                }
             }
 
             return termP(result);
