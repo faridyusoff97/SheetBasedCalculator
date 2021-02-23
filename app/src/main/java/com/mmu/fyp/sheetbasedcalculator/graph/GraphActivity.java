@@ -45,7 +45,7 @@ public class GraphActivity extends AppCompatActivity {
             series1.appendData(new DataPoint(x,y),true,numDataPoints);
         }
 
-        // graph.getViewport().setMaxX(max_X_Value);
+        graph.getViewport().setMaxX(max_X_Value);
         graph.getViewport().setMaxY(100);
         graph.getViewport().setScalable(true);  // activate horizontal zooming and scrolling
         graph.getViewport().setScrollable(true);  // activate horizontal scrolling
