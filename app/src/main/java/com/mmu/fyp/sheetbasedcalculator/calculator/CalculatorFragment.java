@@ -68,7 +68,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
 
     private EditText screen;
     private Button btnSP, b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bDot, btnCP, bAdd, bMinus, bMulti, bDiv, bEqua, bEnter, bDel;
-    private Button bSin, bASin, bTan, bATan, bCos, bACos, bLog, bLn, bExp, bVa, bVb, bExpo, bX, bY, bPow, bEval;
+    private Button bSin, bASin, bTan, bATan, bCos, bACos, bLog, bLn, bExp, bVa, bVb, bExpo, bX, bY, bPow, bEval, bPi;
     private Button btnSDigits, btnPrecision, btnFunction, btnGraph;
     public static CustomStreamTokenizer st;
     public static int token;
@@ -664,7 +664,16 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                 int start = screen.getSelectionStart();
                 int end = screen.getSelectionEnd();
                 screen.getText().replace(Math.min(start, end),
-                        Math.max(start, end), "graph [ ");
+                        Math.max(start, end), "graph [ ]");
+                Editable text;
+                int position;
+                text = screen.getText();
+                for (position = end; position < text.length(); position++)
+                    if (text.charAt(position) == '\n')
+                        break;
+
+                screen.setSelection(position-2);
+
 
             }
         });
@@ -697,6 +706,20 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
             }
         });
 
+        bPi = (Button) root.findViewById(R.id.btnPi);
+        bPi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vibrator vibra = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibra.vibrate(80);
+                int start = screen.getSelectionStart();
+                int end = screen.getSelectionEnd();
+                screen.getText().replace(Math.min(start, end),
+                        Math.max(start, end), "pi ");
+
+            }
+        });
+
 
 
 
@@ -717,6 +740,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                     for (position = end; position < text.length(); position++)
                         if (text.charAt(position) == '\n')
                             break;
+
                     screen.setSelection(position);
 
                     int start = screen.getSelectionStart();
@@ -1006,6 +1030,25 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                                 System.out.println(pair.getKey() + " = " + pair.getValue());
                             }
                         }
+                    }
+
+                    // display pi
+                    else if (var.equalsIgnoreCase("pi")){
+
+                        Apfloat tempAp = new Apfloat(0);
+                        if (token == number){
+                            double tempNum = st.nval;
+                            long longTempNum = (long) tempNum;
+                            longTempNum = longTempNum+1;
+                            tempAp = ApfloatMath.pi(longTempNum);
+                            answer = answer + tempAp + "\n";
+
+                        }else if (token == CustomStreamTokenizer.TT_EOF){
+                            tempAp = ApfloatMath.pi(20);
+                            answer = answer + tempAp + "\n";
+                        }
+                        token = st.nextToken();
+
                     }
 
                     // Graph part

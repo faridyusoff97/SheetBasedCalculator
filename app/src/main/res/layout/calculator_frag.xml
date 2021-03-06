@@ -537,13 +537,14 @@
                             android:text="EXP"
                             android:textSize="20sp" />
                         <Button
-                            android:id="@+id/xbtnPower"
+                            android:id="@+id/btnPi"
                             style="@style/calculatorPadButton"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:onClick="onClickNumber"
-                            android:text="^"
+                            android:text="pi"
+                            android:textAllCaps="false"
                             android:textSize="20sp" />
 
                         <Button
