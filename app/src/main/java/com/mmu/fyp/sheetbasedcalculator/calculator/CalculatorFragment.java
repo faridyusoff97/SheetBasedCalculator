@@ -56,6 +56,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
+import static java.math.RoundingMode.HALF_UP;
 
 // import android.support.v4.app.Fragment;
 // import android.support.v4.content.ContextCompat;
@@ -81,7 +82,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
     public static String function = "";
     public static Scanner sc;
     public static Scanner fc;
-    public static int precision = 16;
+    public static int precision = 10000;
     public static int significantDigits = 10;
     public static int fKey = 0;
     public static int fvKey = 0;
@@ -976,8 +977,16 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                                         fvKey = 1;
                                         result = expression();
                                         rsize = result.floor();
-                                        result = result.precision(precision);
-                                        if (rsize.size() >= significantDigits ){
+                                        long tempSize = rsize.scale();
+                                        if (tempSize < 7)
+                                        {
+                                            tempSize=  (significantDigits+tempSize);
+                                        }else if(tempSize >= 7){
+                                            tempSize = significantDigits;
+                                        }
+                                        result = ApfloatMath.round(result, tempSize, HALF_UP);
+                                        //result = result.precision(tempSize);
+                                        if (rsize.scale() >= 7 ){
                                             answer = answer + "=" + result + "\n";
                                         }else{
                                             String strResult = result.toString(true);
@@ -1032,26 +1041,6 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                         }
                     }
 
-                    // display pi
-                    /*
-                    else if (var.equalsIgnoreCase("pi")){
-
-                        Apfloat tempAp = new Apfloat(0);
-                        if (token == number){
-                            double tempNum = st.nval;
-                            long longTempNum = (long) tempNum;
-                            longTempNum = longTempNum+1;
-                            tempAp = ApfloatMath.pi(longTempNum);
-                            answer = answer + tempAp + "\n";
-
-                        }else if (token == CustomStreamTokenizer.TT_EOF){
-                            tempAp = ApfloatMath.pi(20);
-                            answer = answer + tempAp + "\n";
-                        }
-                        token = st.nextToken();
-
-                    }
-                    */
                     // Graph part
                     // Graph activity
 
@@ -1163,8 +1152,15 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                             currentValue = expression();
                             result = currentValue;
                             rsize = result.floor();
-                            result = result.precision(precision);
-                            if (rsize.size() >= significantDigits ){
+                            long tempSize = rsize.scale();
+                            if (tempSize < 7)
+                            {
+                                tempSize=  (significantDigits+tempSize);
+                            }else if(tempSize >= 7){
+                                tempSize = significantDigits;
+                            }
+                            result = ApfloatMath.round(result, tempSize, HALF_UP);
+                            if (rsize.scale() >= 7 ){
                                 answer = answer + "=" + result + "\n";
                             }else{
                                 String strResult = result.toString(true);
@@ -1180,8 +1176,15 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                         try {
                             result = expression();
                             rsize = result.floor();
-                            result = result.precision(precision);
-                            if (rsize.size() >= significantDigits ){
+                            long tempSize = rsize.scale();
+                            if (tempSize < 7)
+                            {
+                                tempSize=  (significantDigits+tempSize);
+                            }else if(tempSize >= 7){
+                                tempSize = significantDigits;
+                            }
+                            result = ApfloatMath.round(result, tempSize, HALF_UP);
+                            if (rsize.scale() >= 7 ){
                                 answer = answer + "=" + result + "\n";
                             }else{
                                 String strResult = result.toString(true);
@@ -1210,8 +1213,15 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                     try {
                         result = expression();
                         rsize = result.floor();
-                        result = result.precision(precision);
-                        if (rsize.size() >= significantDigits ){
+                        long tempSize = rsize.scale();
+                        if (tempSize < 7)
+                        {
+                            tempSize=  (significantDigits+tempSize);
+                        }else if(tempSize >= 7){
+                            tempSize = significantDigits;
+                        }
+                        result = ApfloatMath.round(result, tempSize, HALF_UP);
+                        if (rsize.scale() >= 7 ){
                             answer = answer + "=" + result + "\n";
                         }else{
                             String strResult = result.toString(true);
@@ -1235,9 +1245,16 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                     try {
                         result = expression();
                         rsize = result.floor();
-                        result = result.precision(precision);
+                        long tempSize = rsize.scale();
+                        if (tempSize < 7)
+                        {
+                            tempSize=  (significantDigits+tempSize);
+                        }else if(tempSize >= 7){
+                            tempSize = significantDigits;
+                        }
+                        result = ApfloatMath.round(result, tempSize, HALF_UP);
 
-                        if (rsize.size() >= significantDigits ){
+                        if (rsize.scale() >= 7 ){
                             answer = answer + "=" + result + "\n";
                         }else{
                             String strResult = result.toString(true);
