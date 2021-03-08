@@ -46,7 +46,7 @@ public class GraphActivity extends AppCompatActivity {
         }
 
         graph.getViewport().setMaxX(max_X_Value);
-        graph.getViewport().setMaxY(100);
+        // graph.getViewport().setMaxY(100);
         graph.getViewport().setScalable(true);  // activate horizontal zooming and scrolling
         graph.getViewport().setScrollable(true);  // activate horizontal scrolling
         graph.getViewport().setScalableY(true);  // activate horizontal and vertical zooming and scrolling

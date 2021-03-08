@@ -285,59 +285,58 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:textAllCaps="false"
                     android:id="@+id/btnSin"
                     style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:onClick="onClickNumber"
                     android:text="sin"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
 
                 <Button
-                    android:textAllCaps="false"
                     android:id="@+id/btnArSin"
                     style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:onClick="onClickNumber"
                     android:text="arsin"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
 
                 <Button
-                    android:textAllCaps="false"
                     android:id="@+id/btnLog"
                     style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:onClick="onClickNumber"
                     android:text="log"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
 
                 <Button
-                    android:textAllCaps="false"
-                    android:id="@+id/btnE"
-                    style="@style/calculatorPadButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="EXP"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
-
-                <Button
-                    android:textAllCaps="false"
                     android:id="@+id/btnX"
                     style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:onClick="onClickNumber"
                     android:text="X"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnFunction"
+                    style="@style/calculatorPadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="functions"
+                    android:textAllCaps="false"
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -349,59 +348,58 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:textAllCaps="false"
                     android:id="@+id/btnCos"
                     style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:onClick="onClickNumber"
                     android:text="cos"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
 
                 <Button
-                    android:textAllCaps="false"
                     android:id="@+id/btnArCos"
                     style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:onClick="onClickNumber"
                     android:text="arcos"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
 
                 <Button
-                    android:textAllCaps="false"
                     android:id="@+id/btnLn"
                     style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:onClick="onClickNumber"
                     android:text="ln"
-                    android:textSize="20sp"
-
-                    android:onClick="onClickNumber" />
-                <Button
                     android:textAllCaps="false"
-                    android:id="@+id/btnA"
-                    style="@style/calculatorPadButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="A"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
+                    android:textSize="20sp" />
 
                 <Button
-                    android:textAllCaps="false"
                     android:id="@+id/btnY"
                     style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:onClick="onClickNumber"
                     android:text="Y"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnGraph"
+                    style="@style/calculatorPadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="graph[]"
+                    android:textAllCaps="false"
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -413,59 +411,120 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:textAllCaps="false"
                     android:id="@+id/btnTan"
                     style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:onClick="onClickNumber"
                     android:text="tan"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
 
                 <Button
-                    android:textAllCaps="false"
                     android:id="@+id/btnArTan"
                     style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:onClick="onClickNumber"
                     android:text="artan"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
 
                 <Button
-                    android:textAllCaps="false"
                     android:id="@+id/btnExp"
                     style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:onClick="onClickNumber"
                     android:text="@string/expo"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
 
                 <Button
-                    android:textAllCaps="false"
-                    android:id="@+id/btnB"
-                    style="@style/calculatorPadButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="B"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
-
-                <Button
-                    android:textAllCaps="false"
                     android:id="@+id/btnPower"
                     style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:onClick="onClickNumber"
                     android:text="^"
-                    android:textSize="20sp"
-                    android:onClick="onClickNumber" />
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnPrecision"
+                    style="@style/calculatorPadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="precision"
+                    android:textAllCaps="false"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/advancedPad"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnA"
+                    style="@style/calculatorPadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="A"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnB"
+                    style="@style/calculatorPadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="B"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnE"
+                    style="@style/calculatorPadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="EXP"
+                    android:textSize="20sp" />
+                <Button
+                    android:id="@+id/btnPi"
+                    style="@style/calculatorPadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="pi"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnSDigits"
+                    style="@style/calculatorPadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="significant digits"
+                    android:textAllCaps="false"
+                    android:textSize="17sp" />
+
 
             </LinearLayout>
 

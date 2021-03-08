@@ -68,7 +68,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
 
     private EditText screen;
     private Button btnSP, b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bDot, btnCP, bAdd, bMinus, bMulti, bDiv, bEqua, bEnter, bDel;
-    private Button bSin, bASin, bTan, bATan, bCos, bACos, bLog, bLn, bExp, bVa, bVb, bExpo, bX, bY, bPow, bEval, bPi;
+    private Button bSin, bASin, bTan, bATan, bCos, bACos, bLog, bLn, bExp, bVa, bVb, bExpo, bX, bY, bPow, bEval, bPi, bFunction, bGraph, bPrecision, bSDigits;
     private Button btnSDigits, btnPrecision, btnFunction, btnGraph;
     public static CustomStreamTokenizer st;
     public static int token;
@@ -636,13 +636,13 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                 int start = screen.getSelectionStart();
                 int end = screen.getSelectionEnd();
                 screen.getText().replace(Math.min(start, end),
-                        Math.max(start, end), "E ");
+                        Math.max(start, end), "E");
 
             }
         });
 
-        bExpo = (Button) root.findViewById(R.id.btnFunction);
-        bExpo.setOnClickListener(new View.OnClickListener() {
+        bFunction = (Button) root.findViewById(R.id.btnFunction);
+        bFunction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Vibrator vibra = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
@@ -655,8 +655,8 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
             }
         });
 
-        bExpo = (Button) root.findViewById(R.id.btnGraph);
-        bExpo.setOnClickListener(new View.OnClickListener() {
+        bGraph = (Button) root.findViewById(R.id.btnGraph);
+        bGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Vibrator vibra = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
@@ -678,8 +678,8 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
             }
         });
 
-        bExpo = (Button) root.findViewById(R.id.btnPrecision);
-        bExpo.setOnClickListener(new View.OnClickListener() {
+        bPrecision = (Button) root.findViewById(R.id.btnPrecision);
+        bPrecision.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Vibrator vibra = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
@@ -692,8 +692,8 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
             }
         });
 
-        bExpo = (Button) root.findViewById(R.id.btnSDigits);
-        bExpo.setOnClickListener(new View.OnClickListener() {
+        bSDigits = (Button) root.findViewById(R.id.btnSDigits);
+        bSDigits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Vibrator vibra = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
@@ -1033,6 +1033,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                     }
 
                     // display pi
+                    /*
                     else if (var.equalsIgnoreCase("pi")){
 
                         Apfloat tempAp = new Apfloat(0);
@@ -1050,7 +1051,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                         token = st.nextToken();
 
                     }
-
+                    */
                     // Graph part
                     // Graph activity
 
@@ -1142,6 +1143,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                             if (token == number){
                                 double tempNum = st.nval;
                                 precision = (int) tempNum;
+                                precision = precision + 1;
                                 token = st.nextToken();
                             }
                         }
@@ -1443,6 +1445,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
         Apfloat result = new Apfloat(0, precision);
         Apfloat a = new Apfloat(0,precision);
         Apfloat apTemp = new Apfloat(0,precision);
+        Apfloat apTempOne = new Apfloat(10,precision);
 
         // result = 0;
         if (token == (int) '^') {
@@ -1460,13 +1463,13 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
         } else if (token == (int) 'E') {
             if (fKey == 1)
             {
-                function = function + "e";
+                function = function + "E";
             }
             token = st.nextToken();
             a = factor();
             if (fKey != 1) {
-                apTemp = ApfloatMath.pow(apTemp, a);
-                result = b.multiply(apTemp);
+                apTempOne = ApfloatMath.pow(apTempOne, a);
+                result = b.multiply(apTempOne);
             }
             return (powerP(result));
         } else
@@ -1676,7 +1679,25 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                         }
                     }
                 }
-            }else{
+            }else if ((st.sval).equals("pi")) {
+                Apfloat apPi = new Apfloat(0);
+                apPi = ApfloatMath.pi(precision);
+                currentValue = apPi;
+                if (fKey == 1)
+                {
+                    currentValue = currentValue.precision(precision);
+                    csize = currentValue.floor();
+                    if (csize.size() >= significantDigits ){
+                        function = function + currentValue;
+                    }else{
+                        String strValue = currentValue.toString(true);
+                        function = function  + strValue;
+                    }
+                }
+                token = st.nextToken();
+                return currentValue;
+            }
+            else{
                 String id = st.sval;
                 hm.get(id);
                 fm.get(id);
