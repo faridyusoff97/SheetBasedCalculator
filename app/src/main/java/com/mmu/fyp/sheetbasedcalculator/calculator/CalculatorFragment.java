@@ -82,7 +82,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
     public static String function = "";
     public static Scanner sc;
     public static Scanner fc;
-    public static int precision = 16;
+    public static int precision = 1000;
     public static int significantDigits = 10;
     public static int fKey = 0;
     public static int fvKey = 0;
@@ -891,6 +891,8 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
         Apfloat result = new Apfloat(0,precision);
         Apfloat rsize = new Apfloat(0);
         Apfloat apZero = new Apfloat(0);
+        Apfloat apOne = new Apfloat(1);
+        Apfloat apNegOne = new Apfloat(-1);
         long rsize_scale_long;
         String var;
         String funVar;
@@ -927,114 +929,113 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                     token = st.nextToken();
 
                     // FUNCTION PART ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    if (token == (int) '(')
-                    {
-                        token = st.nextToken();
-                        if (token == variable)
-                        {
-                            funVar = st.sval;
+                    if ((!var.equalsIgnoreCase("cos")) && (!var.equalsIgnoreCase("tan")) && (!var.equalsIgnoreCase("sin")) && (!var.equalsIgnoreCase("arccos")) && (!var.equalsIgnoreCase("arcsin")) && (!var.equalsIgnoreCase("arctan")) && (!var.equalsIgnoreCase("log")) && (!var.equalsIgnoreCase("ln")) && (!var.equalsIgnoreCase("e")) && (!var.equalsIgnoreCase("pi"))) {
+
+                        if (token == (int) '(') {
                             token = st.nextToken();
-                            if (funVar.equalsIgnoreCase("x"))
-                            {
-                                if (token == (int) ')')
-                                {
-                                    token = st.nextToken();
-                                    if (token == (int) '=')
-                                    {
+                            if (token == variable) {
+                                funVar = st.sval;
+                                token = st.nextToken();
+                                if (funVar.equalsIgnoreCase("x")) {
+                                    if (token == (int) ')') {
                                         token = st.nextToken();
-                                        function = "";
-                                        fKey = 1;
-                                        currentValue = expression();
-                                        result = currentValue;
-                                        answer = answer + "=" + function + "\n";
+                                        if (token == (int) '=') {
+                                            token = st.nextToken();
+                                            function = "";
+                                            fKey = 1;
+                                            currentValue = expression();
+                                            result = currentValue;
+                                            answer = answer + "=" + function + "\n";
 
-                                        fKey = 0;
-                                        functionName.put(var, function);
-                                    }
-                                    else if(token == st.TT_EOF)
-                                    {
-                                        functionName.get(var);
-                                        if (functionName.get(var) != null) {
-                                            answer = answer + "=" + functionName.get(var) + "\n";
-                                        }else {
-                                            throw new CalculationException("Function does not exist!");
+                                            fKey = 0;
+                                            functionName.put(var, function);
+                                        } else if (token == st.TT_EOF) {
+                                            functionName.get(var);
+                                            if (functionName.get(var) != null) {
+                                                answer = answer + "=" + functionName.get(var) + "\n";
+                                            } else {
+                                                throw new CalculationException("Function does not exist!");
+                                            }
                                         }
                                     }
+
+                                }
+                            } else if (token == number) {
+                                double tempNum = st.nval;
+                                Apfloat tempAp = new Apfloat(tempNum);
+
+                                token = st.nextToken();
+                                if (functionName.get(var) != null) {
+                                    fm.put("X", tempAp);
+                                    fm.put("x", tempAp);
+
+                                    String tempName = functionName.get(var);
+
+                                    fc = new Scanner(tempName);
+                                    while (fc.hasNextLine()) {
+                                        equation = fc.nextLine();
+                                        setupTokenizer();
+                                        try {
+                                            fvKey = 1;
+                                            result = expression();
+                                            rsize = result.floor();
+                                            // Because scale() for 0 is infinity.
+                                            if (rsize.equals(apZero)) {
+                                                rsize_scale_long = 1;
+                                            } else {
+                                                rsize_scale_long = rsize.scale();
+                                            }
+                                            long tempSize = rsize_scale_long;
+                                            if (tempSize < 7) {
+                                                tempSize = (significantDigits + tempSize);
+                                            } else if (tempSize >= 7) {
+                                                tempSize = significantDigits;
+                                            }
+                                            if (rsize.equals(apNegOne)){
+                                                result = result.add(apOne);
+                                                result = ApfloatMath.round(result, tempSize, HALF_UP);
+                                                result = result.subtract(apOne);
+                                            }else {
+                                                result = ApfloatMath.round(result, tempSize, HALF_UP);
+                                            }
+
+                                            if (rsize_scale_long >= 7) {
+                                                answer = answer + "=" + result + "\n";
+                                            } else {
+                                                String strResult = result.toString(true);
+                                                answer = answer + "=" + strResult + "\n";
+                                            }
+
+                                            fvKey = 0;
+                                        } catch (CalculationException e) {
+                                            e.printStackTrace();
+                                            new AlertDialog.Builder(getActivity())
+                                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                                    .setTitle("Error")
+                                                    .setMessage(e.getMessage())
+                                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
+
+                                                        }
+                                                    })
+                                                    .show();
+                                        }
+
+
+                                        fm.clear();
+                                        return answer;
+                                    }
+
+
+                                } else {
+                                    throw new CalculationException("Function does not exist!");
                                 }
 
-                            }
-                        }else if (token == number){
-                            double tempNum = st.nval;
-                            Apfloat tempAp = new Apfloat(tempNum);
-
-                            token = st.nextToken();
-                            if (functionName.get(var) != null){
-                                fm.put("X", tempAp);
-                                fm.put("x", tempAp);
-
-                                String tempName = functionName.get(var);
-
-                                fc = new Scanner(tempName);
-                                while (fc.hasNextLine()) {
-                                    equation = fc.nextLine();
-                                    setupTokenizer();
-                                    try {
-                                        fvKey = 1;
-                                        result = expression();
-                                        rsize = result.floor();
-                                        // Because scale() for 0 is infinity.
-                                        if ( rsize.equals(apZero) ){
-                                            rsize_scale_long = 1;
-                                        }
-                                        else{
-                                            rsize_scale_long = rsize.scale();
-                                        }
-                                        long tempSize = rsize_scale_long;
-                                        if (tempSize < 7)
-                                        {
-                                            tempSize=  (significantDigits+tempSize);
-                                        }else if(tempSize >= 7){
-                                            tempSize = significantDigits;
-                                        }
-                                        result = ApfloatMath.round(result, tempSize, HALF_UP);
-                                        //result = result.precision(tempSize);
-                                        if (rsize_scale_long >= 7 ){
-                                            answer = answer + "=" + result + "\n";
-                                        }else{
-                                            String strResult = result.toString(true);
-                                            answer = answer + "=" + strResult + "\n";
-                                        }
-
-                                        fvKey = 0;
-                                    } catch (CalculationException e) {
-                                        e.printStackTrace();
-                                        new AlertDialog.Builder(getActivity())
-                                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                                .setTitle("Error")
-                                                .setMessage(e.getMessage())
-                                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialog, int which) {
-
-                                                    }
-                                                })
-                                                .show();
-                                    }
-
-
-                                    fm.clear();
-                                    return answer;
-                                }
-
-
-                            }else{
-                                throw new CalculationException("Function does not exist!");
                             }
 
                         }
-
                     }
-
                     // FUNCTION PART END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
                     // Display all functions that have been defined
@@ -1079,7 +1080,6 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                                 if (token == number){
                                     double tempNum = st.nval;
                                     max_X_Value = (int) tempNum;
-                                    Log.d("adamasuk", String.valueOf(max_X_Value));
                                 }
                                 //Check if function exists
                                 if (functionName.get(var) != null){
@@ -1157,7 +1157,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                                 token = st.nextToken();
                             }
                         }
-                        else if ((!var.equalsIgnoreCase("cos")) && (!var.equalsIgnoreCase("tan")) && (!var.equalsIgnoreCase("sin")) && (!var.equalsIgnoreCase("arccos")) && (!var.equalsIgnoreCase("arcsin")) && (!var.equalsIgnoreCase("arctan")) && (!var.equalsIgnoreCase("log")) && (!var.equalsIgnoreCase("ln")) && (!var.equalsIgnoreCase("e"))){
+                        else if ((!var.equalsIgnoreCase("cos")) && (!var.equalsIgnoreCase("tan")) && (!var.equalsIgnoreCase("sin")) && (!var.equalsIgnoreCase("arccos")) && (!var.equalsIgnoreCase("arcsin")) && (!var.equalsIgnoreCase("arctan")) && (!var.equalsIgnoreCase("log")) && (!var.equalsIgnoreCase("ln")) && (!var.equalsIgnoreCase("e"))&& (!var.equalsIgnoreCase("pi"))){
 
                             token = st.nextToken();
                             Log.d("var",var);
@@ -1178,7 +1178,13 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                             }else if(tempSize >= 7){
                                 tempSize = significantDigits;
                             }
-                            result = ApfloatMath.round(result, tempSize, HALF_UP);
+                            if (rsize.equals(apNegOne)){
+                                result = result.add(apOne);
+                                result = ApfloatMath.round(result, tempSize, HALF_UP);
+                                result = result.subtract(apOne);
+                            }else {
+                                result = ApfloatMath.round(result, tempSize, HALF_UP);
+                            }
                             if (rsize_scale_long >= 7 ){
                                 answer = answer + "=" + result + "\n";
                             }else{
@@ -1210,7 +1216,13 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                             }else if(tempSize >= 7){
                                 tempSize = significantDigits;
                             }
-                            result = ApfloatMath.round(result, tempSize, HALF_UP);
+                            if (rsize.equals(apNegOne)){
+                                result = result.add(apOne);
+                                result = ApfloatMath.round(result, tempSize, HALF_UP);
+                                result = result.subtract(apOne);
+                            }else {
+                                result = ApfloatMath.round(result, tempSize, HALF_UP);
+                            }
                             if (rsize_scale_long >= 7 ){
                                 answer = answer + "=" + result + "\n";
                             }else{
@@ -1255,7 +1267,13 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                         }else if(tempSize >= 7){
                             tempSize = significantDigits;
                         }
-                        result = ApfloatMath.round(result, tempSize, HALF_UP);
+                        if (rsize.equals(apNegOne)){
+                            result = result.add(apOne);
+                            result = ApfloatMath.round(result, tempSize, HALF_UP);
+                            result = result.subtract(apOne);
+                        }else {
+                            result = ApfloatMath.round(result, tempSize, HALF_UP);
+                        }
                         if (rsize_scale_long >= 7 ){
                             answer = answer + "=" + result + "\n";
                         }else{
@@ -1294,7 +1312,14 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                         }else if(tempSize >= 7){
                             tempSize = significantDigits;
                         }
-                        result = ApfloatMath.round(result, tempSize, HALF_UP);
+
+                        if (rsize.equals(apNegOne)){
+                            result = result.add(apOne);
+                            result = ApfloatMath.round(result, tempSize, HALF_UP);
+                            result = result.subtract(apOne);
+                        }else {
+                            result = ApfloatMath.round(result, tempSize, HALF_UP);
+                        }
 
                         if (rsize_scale_long >= 7 ){
                             answer = answer + "=" + result + "\n";
@@ -1645,9 +1670,11 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                 token = st.nextToken();
                 currentValue = expression();
                 if (fKey != 1) {
-                    currentValue = ApfloatMath.acos(currentValue);
-                    result = a180.divide(aPi);
-                    result = result.multiply(currentValue);
+                    try {
+                        currentValue = ApfloatMath.acos(currentValue);
+                        result = a180.divide(aPi);
+                        result = result.multiply(currentValue);
+                    }catch(Exception E){throw new CalculationException("Arccos takes a value between -1 and 1"); }
                 }
                 // result = (180 / Math.PI) * (Math.acos(currentValue));
                 return result;
@@ -1656,12 +1683,15 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                 {
                     function = function + "arcsin";
                 }
+
                 token = st.nextToken();
                 currentValue = expression();
                 if (fKey != 1) {
-                    currentValue = ApfloatMath.asin(currentValue);
-                    result = a180.divide(aPi);
-                    result = result.multiply(currentValue);
+                    try {
+                        currentValue = ApfloatMath.asin(currentValue);
+                        result = a180.divide(aPi);
+                        result = result.multiply(currentValue);
+                    }catch(Exception E){throw new CalculationException("Arcsin takes a value between -1 and 1"); }
                 }
                 // result = (180 / Math.PI) * (Math.asin(currentValue));
                 return result;
@@ -1673,9 +1703,11 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                 token = st.nextToken();
                 currentValue = expression();
                 if (fKey != 1) {
-                    currentValue = ApfloatMath.asin(currentValue);
-                    result = a180.divide(aPi);
-                    result = result.multiply(currentValue);
+                    try {
+                        currentValue = ApfloatMath.asin(currentValue);
+                        result = a180.divide(aPi);
+                        result = result.multiply(currentValue);
+                    }catch(Exception E){throw new CalculationException("Arctan takes a value between -1 and 1"); }
                 }
                 //result = (180 / Math.PI) * (Math.atan(currentValue));
                 return result;

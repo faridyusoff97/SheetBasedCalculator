@@ -14,19 +14,22 @@
     <string name="about_activity_title">About</string>
 
     <string name="about_activity_full_text">
-        Android Sheet Calculator\nby Tiu Yi Hang\n\nUses code from Sheet Calculator (Java SE)\nby Edwin Law Hui Hean v3.0\nby Wong Keat Chong v2.0\nby Cheong Ze-Yng v1.0\n\nAll versions developed under the supervision of Dr. Ian Chai\n\nCopyright © 2017 Faculty of Computing and Informatics,\nMultimedia University. All rights reserved.
+        Android Sheet Calculator\nby Muhammad Farid bin Yusoff\n\nUses code from Sheet Calculator (Java SE)\nby Tiu Yi Hang v4.0\nby Edwin Law Hui Hean v3.0\nby Wong Keat Chong v2.0\nby Cheong Ze-Yng v1.0\n\nAll versions developed under the supervision of Dr. Ian Chai\n\nCopyright © 2017 Faculty of Computing and Informatics,\nMultimedia University. All rights reserved.
     </string>
     <string name="help_activity_full_text">
 		<![CDATA[
-				<h1>Sheet-Based Calculator</h1>
+				<h1>Improved Sheet-Based Calculator</h1>
 				<p>
 				<b>Introduction</b><br>
-                The sheet-based calculator is a program which does mathematical
+                The improved sheet-based calculator is a program which does mathematical
 		        expression calculations in a word-processing-like environment.
 		        It performs simple operations such as addition, subtraction,
 		        multiplication, division etc. It also allows users to assign
 		        value to a variable. It also able to calculate trigonometric
-		        function such as cos, sin, tan, log etc.
+		        function such as cos, sin, tan, log etc. The latest version
+		        allows users to define their own functions as well as graph
+		        said functions, use pi in calculations and set precision and
+		        the number of decimal places that is shown in their results.
 		        </p>
 		        <p>
 		        <b>Mathematical Operators Supported</b><br>
@@ -106,6 +109,10 @@
 						<td>Natural logarithm</td>
 						<td style = padding-left:20px>ln</td>
 						</tr>
+						<tr>
+						<td>Pi</td>
+						<td style = padding-left:20px>pi</td>
+						</tr>
 					</tbody>
 				</table>
 				</p>
@@ -124,6 +131,8 @@
                 1 + 1 <br>
                 2 + 2 <-- cursor is in here, press evaluate <br>
                 = 4.0 <-- calculator will only evaluate the current line <br>
+                </p>
+                <p>
                 <b>Using variables</b><br>
                 1) Use the [=] sign to assign values to variables <br>
                 <b>Example</b><br>
@@ -134,6 +143,7 @@
                 A + 2 <br>
                 = 3.0 <br>
                 </p>
+
                 <p>
                 <b>Defining Functions </b><br>
                 1) Type in a function name followed by (x). <br>
@@ -171,24 +181,44 @@
                 = 12.0 <-- answers will appear in the following lines <br>
 
 				</p>
-                <p>
-                <b>Changing settings </b><br>
-                Certain settings such as the precise number of decimal places calculations should be calculated in (precision),
-                 and the number of digits before answers are displayed in significant figures (sdigits) can be changed by the
-                  user. Type in the appropriate commands into the sheet to change them. Here are the steps to do so: <br><br>
-                1)  Type in precision followed by an "=", enter the number of decimal places you wish to calculate in<br>
-                2) Type in sdigits followed by an "=", enter the number of digits you wish to see before answers get converted to significant figure notation <br>
+
+				<p>
+                <b>Graphing User-defined Functions </b><br>
+                1) The function must have been defined first. Once that is done, proceed with step 2. <br>
+                2) Type in a graph followed by square brackets with the user-defined function name inside. <br>
+                3) Add a number to adjust the maximum x value of the graph if you wish to do so.
                 3) Highlight the expression. <br>
                 4) Press the [Evaluate] button. <br>
                 If you do not highlight anything, the calculator will attempt to evaluate the current line. <br>
                 <b>Example 1: </b><br>
-                sdigits = 10 <-- highlight all and press evaluate <br>
-                60+60 <-- highlight all and press evaluate <br>
-                = 120.0 <-- answers will appear in the following lines <br>
+                graph[f] <-- highlight all and press evaluate <br>
+
+                graph[f 360] <-- highlight all and press evaluate <br>
+				</p>
+
+                <p>
+                <b>Changing settings </b><br>
+                Certain settings such as the precise number of decimal places calculations should be calculated in (precision),
+                and the number of decimal places answers are displayed in (DPlaces) can be changed by the
+                user.<br>
+                <br>
+                The default values are :<br>
+                precision = 10000<br>
+                DPlaces = 10<br>
+                <br>
+                 Use the buttons provided or type in the appropriate commands into the sheet to change them. Here are the steps to do so: <br><br>
+                1)  Type in precision followed by an "=", enter the number of decimal places you wish to calculate in<br>
+                2) Type in  DPlaces followed by an "=", enter the number of decimal places you wish for answers to be displayed in.<br>
+                3) Highlight the expression. <br>
+                4) Press the [Evaluate] button. <br>
+                If you do not highlight anything, the calculator will attempt to evaluate the current line. <br>
+                <b>Example 1: </b><br>
+                precision = 10 <-- highlight all and press evaluate <br>
+
                 <b>Example 2: </b><br>
-                sdigits = 2 <-- highlight all and press evaluate <br>
-                60+60 <-- highlight all and press evaluate <br>
-                = 1.2e2 <-- answers will appear in the following lines <br>
+                Dplaces = 3 <-- highlight all and press evaluate <br>
+                60.16666+60 <-- highlight all and press evaluate <br>
+                = 120.167 <-- answers will appear in the following lines <br>
 				</p>
 
 
