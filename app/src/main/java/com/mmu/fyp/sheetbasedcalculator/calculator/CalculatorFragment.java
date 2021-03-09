@@ -991,7 +991,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                                             } else if (tempSize >= 7) {
                                                 tempSize = significantDigits;
                                             }
-                                            if (rsize.equals(apNegOne)){
+                                            if (rsize.equals(apNegOne) || rsize.equals(apZero)){
                                                 result = result.add(apOne);
                                                 result = ApfloatMath.round(result, tempSize, HALF_UP);
                                                 result = result.subtract(apOne);
@@ -1039,7 +1039,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                     // FUNCTION PART END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
                     // Display all functions that have been defined
-                    else if (var.equalsIgnoreCase("functions")){
+                    if (var.equalsIgnoreCase("functions")){
                         token = st.nextToken();
                         int number = 1;
                         if(token == st.TT_EOF) {
@@ -1057,7 +1057,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                     // Graph part
                     // Graph activity
 
-                    else if (var.equalsIgnoreCase("graph")){
+                    if (var.equalsIgnoreCase("graph")){
                         Vibrator vibra = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                         vibra.vibrate(80);
                         Intent graphIntent = new Intent(getContext(), GraphActivity.class);
@@ -1094,7 +1094,8 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                                             try {
                                                 fvKey = 1;
                                                 gKey = 1;
-
+                                                int tempPres = precision;
+                                                precision = 20;
                                                 //Loop values of x to calculate y
                                                 Apfloat tempAp = new Apfloat(i);
                                                 Apfloat divideThis = new Apfloat(10);
@@ -1105,7 +1106,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                                                 result = expression();
                                                 yArray[i] = result.doubleValue();
                                                 i++;
-
+                                                precision = tempPres;
                                                 gKey = 0;
                                                 fvKey = 0;
                                             } catch (CalculationException e) {
@@ -1178,7 +1179,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                             }else if(tempSize >= 7){
                                 tempSize = significantDigits;
                             }
-                            if (rsize.equals(apNegOne)){
+                            if (rsize.equals(apNegOne) || rsize.equals(apZero)){
                                 result = result.add(apOne);
                                 result = ApfloatMath.round(result, tempSize, HALF_UP);
                                 result = result.subtract(apOne);
@@ -1209,14 +1210,16 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                                 rsize_scale_long = rsize.scale();
                             }
                             long tempSize = rsize_scale_long;
-
+                            Log.d("checkk rsize_Scale_long", String.valueOf(rsize_scale_long));
                             if (tempSize < 7)
                             {
                                 tempSize=  (significantDigits+tempSize);
                             }else if(tempSize >= 7){
                                 tempSize = significantDigits;
                             }
-                            if (rsize.equals(apNegOne)){
+                            Log.d("checkk rsize", rsize.toString());
+                            Log.d("checkk tempsize", String.valueOf(tempSize));
+                            if (rsize.equals(apNegOne) || rsize.equals(apZero)){
                                 result = result.add(apOne);
                                 result = ApfloatMath.round(result, tempSize, HALF_UP);
                                 result = result.subtract(apOne);
@@ -1267,7 +1270,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                         }else if(tempSize >= 7){
                             tempSize = significantDigits;
                         }
-                        if (rsize.equals(apNegOne)){
+                        if (rsize.equals(apNegOne) || rsize.equals(apZero)){
                             result = result.add(apOne);
                             result = ApfloatMath.round(result, tempSize, HALF_UP);
                             result = result.subtract(apOne);
@@ -1313,7 +1316,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                             tempSize = significantDigits;
                         }
 
-                        if (rsize.equals(apNegOne)){
+                        if (rsize.equals(apNegOne) || rsize.equals(apZero)){
                             result = result.add(apOne);
                             result = ApfloatMath.round(result, tempSize, HALF_UP);
                             result = result.subtract(apOne);

@@ -186,9 +186,9 @@
                 <b>Graphing User-defined Functions </b><br>
                 1) The function must have been defined first. Once that is done, proceed with step 2. <br>
                 2) Type in a graph followed by square brackets with the user-defined function name inside. <br>
-                3) Add a number to adjust the maximum x value of the graph if you wish to do so.
-                3) Highlight the expression. <br>
-                4) Press the [Evaluate] button. <br>
+                3) Add a number to adjust the maximum x value of the graph if you wish to do so.<br>
+                4) Highlight the expression. <br>
+                5) Press the [Evaluate] button. <br>
                 If you do not highlight anything, the calculator will attempt to evaluate the current line. <br>
                 <b>Example 1: </b><br>
                 graph[f] <-- highlight all and press evaluate <br>
@@ -203,7 +203,7 @@
                 user.<br>
                 <br>
                 The default values are :<br>
-                precision = 10000<br>
+                precision = 100<br>
                 DPlaces = 10<br>
                 <br>
                  Use the buttons provided or type in the appropriate commands into the sheet to change them. Here are the steps to do so: <br><br>
