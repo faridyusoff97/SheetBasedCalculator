@@ -1053,6 +1053,24 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                             }
                         }
                     }
+                    // display pi
+                    if (var.equalsIgnoreCase("pi")){
+
+                        Apfloat tempAp = new Apfloat(0);
+                        if (token == number){
+                            double tempNum = st.nval;
+                            long longTempNum = (long) tempNum;
+                            longTempNum = longTempNum+1;
+                            tempAp = ApfloatMath.pi(longTempNum);
+                            answer = answer + tempAp + "\n";
+
+                        }else if (token == CustomStreamTokenizer.TT_EOF){
+                            tempAp = ApfloatMath.pi(20);
+                            answer = answer + tempAp + "\n";
+                        }
+                        token = st.nextToken();
+
+                    }
 
                     // Graph part
                     // Graph activity
@@ -1095,7 +1113,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                                                 fvKey = 1;
                                                 gKey = 1;
                                                 int tempPres = precision;
-                                                precision = 20;
+                                                precision = 10;
                                                 //Loop values of x to calculate y
                                                 Apfloat tempAp = new Apfloat(i);
                                                 Apfloat divideThis = new Apfloat(10);
@@ -1595,7 +1613,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
             return result;
         } else if (token == number) {
             double tempNum = st.nval;
-            Apfloat test = new Apfloat(tempNum);
+            Apfloat test = new Apfloat(tempNum,precision);
             currentValue = test;
             if (fKey == 1)
             {
@@ -1779,14 +1797,7 @@ public class CalculatorFragment extends Fragment implements CalculatorContract.V
                 currentValue = apPi;
                 if (fKey == 1)
                 {
-                    currentValue = currentValue.precision(precision);
-                    csize = currentValue.floor();
-                    if (csize.size() >= significantDigits ){
-                        function = function + currentValue;
-                    }else{
-                        String strValue = currentValue.toString(true);
-                        function = function  + strValue;
-                    }
+                    function = function + "pi";
                 }
                 token = st.nextToken();
                 return currentValue;
