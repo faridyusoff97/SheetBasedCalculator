@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/170223_SheetBasedCalculator.iml" filepath="$PROJECT_DIR$/.idea/modules/170223_SheetBasedCalculator.iml" group="170223_SheetBasedCalculator" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="170223 SheetBasedCalculator/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Improved_SheetBasedCalculator.iml" filepath="$PROJECT_DIR$/.idea/modules/Improved_SheetBasedCalculator.iml" group="Improved_SheetBasedCalculator" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Improved SheetBasedCalculator/app" />
     </modules>
   </component>
 </project>

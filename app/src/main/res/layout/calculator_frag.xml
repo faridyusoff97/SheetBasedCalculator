@@ -46,14 +46,6 @@
                 android:background="@color/mainPad"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btnStartParentheses"
-                    style="@style/calculatorPadButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:onClick="onClickNumber"
-                    android:text="(" />
 
                 <Button
                     android:id="@+id/btn7"
@@ -91,6 +83,64 @@
                     android:onClick="onClickNumber"
                     android:text="." />
 
+                <Button
+                    android:id="@+id/btnStartParentheses"
+                    style="@style/calculatorPadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="(" />
+
+                <Button
+                    android:id="@+id/btnSin"
+                    style="@style/calculatorPadButton"
+                    android:background="@color/advancedPad"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="sin"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnArSin"
+                    style="@style/calculatorPadButton"
+                    android:background="@color/advancedPad"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="arsin"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnLog"
+                    style="@style/calculatorPadButton"
+                    android:background="@color/advancedPad"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="log"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnX"
+                    style="@style/calculatorPadButton"
+                    android:background="@color/advancedPad"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="X"
+                    android:textSize="20sp" />
+
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -100,14 +150,6 @@
                 android:background="@color/mainPad"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btnEndParentheses"
-                    style="@style/calculatorPadButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:onClick="onClickNumber"
-                    android:text=")" />
 
                 <Button
                     android:id="@+id/btn8"
@@ -145,6 +187,63 @@
                     android:onClick="onClickNumber"
                     android:text="0" />
 
+                <Button
+                    android:id="@+id/btnEndParentheses"
+                    style="@style/calculatorPadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text=")" />
+
+                <Button
+                    android:id="@+id/btnCos"
+                    style="@style/calculatorPadButton"
+                    android:background="@color/advancedPad"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="cos"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnArCos"
+                    style="@style/calculatorPadButton"
+                    android:background="@color/advancedPad"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="arcos"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnLn"
+                    style="@style/calculatorPadButton"
+                    android:background="@color/advancedPad"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="ln"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnY"
+                    style="@style/calculatorPadButton"
+                    android:background="@color/advancedPad"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="Y"
+                    android:textSize="20sp" />
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -154,15 +253,6 @@
                 android:background="@color/mainPad"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btnEnter"
-                    style="@style/calculatorPadButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:onClick="onClickEnter"
-                    android:text="Enter"
-                    android:textSize="16sp" />
 
                 <Button
                     android:id="@+id/btn9"
@@ -192,14 +282,77 @@
                     android:onClick="onClickNumber"
                     android:text="3" />
 
+
+
                 <Button
-                    android:id="@+id/btnEqual"
+                    android:id="@+id/btnPower"
                     style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:onClick="onClickNumber"
-                    android:text="=" />
+                    android:text="^"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnE"
+                    style="@style/calculatorPadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="EXP"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnTan"
+                    style="@style/calculatorPadButton"
+                    android:background="@color/advancedPad"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="tan"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnArTan"
+                    style="@style/calculatorPadButton"
+                    android:background="@color/advancedPad"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="artan"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnExp"
+                    style="@style/calculatorPadButton"
+                    android:background="@color/advancedPad"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="e^"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
+
+
+
+                <Button
+                    android:id="@+id/btnPi"
+                    style="@style/calculatorPadButton"
+                    android:background="@color/advancedPad"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="pi"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -210,25 +363,7 @@
                 android:background="@color/secondaryPad"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btnEvaluate"
-                    style="@style/calculatorPadButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:onClick="onClickEvaluate"
-                    android:text="Evaluate"
-                    android:textSize="16sp" />
 
-                <Button
-                    android:id="@+id/btnDelete"
-                    style="@style/calculatorPadButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:onClick="onClickDelete"
-                    android:text="Delete"
-                    android:textSize="16sp" />
 
                 <Button
                     android:id="@+id/btnDivide"
@@ -260,315 +395,113 @@
                 <Button
                     android:id="@+id/btnPlus"
                     style="@style/calculatorPadButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:onClick="onClickNumber"
                     android:text="+" />
 
-            </LinearLayout>
-
-            <View
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:background="@color/advancedPad">
-
-            </View>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <com.wunderlist.slidinglayer.SlidingLayer xmlns:slidingLayer="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/slidingLayer1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                slidingLayer:changeStateOnTap="true"
-                slidingLayer:offsetDistance="20dp"
-                slidingLayer:shadowSize="0dp"
-                slidingLayer:stickTo="right">
-
-                <LinearLayout
+                <Button
+                    android:id="@+id/btnFunction"
+                    style="@style/calculatorPadButton"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/advancedPad"
-                    android:orientation="horizontal"
-                    android:paddingStart="20dp"
-                    android:paddingLeft="20dp"
-                    android:paddingEnd="0dp"
-                    android:paddingRight="0dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <Button
-                            android:id="@+id/btnSin"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="sin"
-                            android:textAllCaps="false"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnArSin"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="arsin"
-                            android:textAllCaps="false"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnLog"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="log"
-                            android:textAllCaps="false"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnX"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="X"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnFunction"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="functions"
-                            android:textAllCaps="false"
-                            android:textSize="17sp" />
-
-
-                    </LinearLayout>
-                    // 2nd column
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/advancedPad"
-                        android:orientation="vertical">
-
-                        <Button
-                            android:id="@+id/btnCos"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="cos"
-                            android:textAllCaps="false"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnArCos"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="arcos"
-                            android:textAllCaps="false"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnLn"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="ln"
-                            android:textAllCaps="false"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnY"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="Y"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnGraph"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="graph[]"
-                            android:textAllCaps="false"
-                            android:textSize="17sp" />
-
-
-                    </LinearLayout>
-                    // 3rd column
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/advancedPad"
-                        android:orientation="vertical">
-
-                        <Button
-                            android:id="@+id/btnTan"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="tan"
-                            android:textAllCaps="false"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnArTan"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="artan"
-                            android:textAllCaps="false"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnExp"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="@string/expo"
-                            android:textAllCaps="false"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnPower"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="^"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnPrecision"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="precision"
-                            android:textAllCaps="false"
-                            android:textSize="17sp" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="functions"
+                    android:textAllCaps="false"
+                    android:textSize="17sp" />
 
 
 
-                    </LinearLayout>
 
-                    // 4th column
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/advancedPad"
-                        android:orientation="vertical">
-
-                        <Button
-                            android:id="@+id/btnA"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="A"
-                            android:textAllCaps="false"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnB"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="B"
-                            android:textAllCaps="false"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnE"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="EXP"
-                            android:textSize="20sp" />
-                        <Button
-                            android:id="@+id/btnPi"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="pi"
-                            android:textAllCaps="false"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btnSDigits"
-                            style="@style/calculatorPadButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:onClick="onClickNumber"
-                            android:text="significant digits"
-                            android:textAllCaps="false"
-                            android:textSize="17sp" />
-
-
-                    </LinearLayout>
+                <Button
+                    android:id="@+id/btnSDigits"
+                    style="@style/calculatorPadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickNumber"
+                    android:text="decimal places"
+                    android:textAllCaps="false"
+                    android:textSize="17sp" />
 
 
 
-                </LinearLayout>
+            </LinearLayout>
+             <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/secondaryPad"
+            android:orientation="vertical">
 
-            </com.wunderlist.slidinglayer.SlidingLayer>
+                 <Button
+                     android:id="@+id/btnEvaluate"
+                     style="@style/calculatorPadButton"
+                     android:layout_width="match_parent"
+                     android:layout_height="0dp"
+                     android:layout_weight="1"
+                     android:onClick="onClickEvaluate"
+                     android:text="Evaluate"
+                     android:textSize="16sp" />
 
+                 <Button
+                     android:id="@+id/btnEnter"
+                     style="@style/calculatorPadButton"
+                     android:layout_width="match_parent"
+                     android:layout_height="0dp"
+                     android:layout_weight="1"
+                     android:onClick="onClickEnter"
+                     android:text="Enter"
+                     android:textSize="16sp" />
+
+                 <Button
+                     android:id="@+id/btnDelete"
+                     style="@style/calculatorPadButton"
+                     android:layout_width="match_parent"
+                     android:layout_height="0dp"
+                     android:layout_weight="1"
+                     android:onClick="onClickDelete"
+                     android:text="Delete"
+                     android:textSize="16sp" />
+
+                 <Button
+                     android:id="@+id/btnEqual"
+                     style="@style/calculatorPadButton"
+                     android:layout_width="match_parent"
+                     android:layout_height="0dp"
+                     android:layout_weight="1"
+                     android:onClick="onClickNumber"
+                     android:text="=" />
+
+                 <Button
+                     android:id="@+id/btnGraph"
+                     style="@style/calculatorPadButton"
+                     android:layout_width="match_parent"
+                     android:layout_height="0dp"
+                     android:layout_weight="1"
+                     android:onClick="onClickNumber"
+                     android:text="graph[]"
+                     android:textAllCaps="false"
+                     android:textSize="17sp" />
+
+                 <Button
+                     android:id="@+id/btnPrecision"
+                     style="@style/calculatorPadButton"
+                     android:layout_width="match_parent"
+                     android:layout_height="0dp"
+                     android:layout_weight="1"
+                     android:onClick="onClickNumber"
+                     android:text="precision"
+                     android:textAllCaps="false"
+                     android:textSize="17sp" />
+
+
+
+             </LinearLayout>
         </LinearLayout>
+
 
     </FrameLayout>
 
